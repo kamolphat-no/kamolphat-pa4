@@ -62,6 +62,7 @@ if st.button('Send'):
 
     other_songs = response_dict.get('related_songs', [])
     st.write('\n **Other recommended songs**')
-    st.write(other_songs)
+    for song in other_songs :
+        st.write(song)
 
 
