@@ -51,14 +51,14 @@ if st.button('Send'):
 
     key_message = response_dict.get('key_message', 'No key message provided.')
     st.subheader('Key Message')
-    st.write(f'\t {key_message}')
+    st.write(key_message)
 
     theme = response_dict.get('theme', 'No theme provided.')
     st.subheader('\n Theme')
-    st.write(f'\t {theme}')
+    st.write(theme)
 
-    # vocab_df = pd.DataFrame.from_dict(response_dict)
-    # st.table(vocab_df)
+    vocab_df = pd.DataFrame.from_dict(response_dict.get('interesting_words', []))
+    st.table(vocab_df)
 
     other_songs = response_dict.get('related_songs', [])
     st.subheader('\n Other recommended songs')
