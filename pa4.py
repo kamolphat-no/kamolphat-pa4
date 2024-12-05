@@ -48,8 +48,12 @@ if st.button('Send'):
     response_dict = json.loads(ai_response)
 
     key_message = response_dict['key_message']
-    st.write('**Key Message** \n')
+    st.write('**Key Message**')
     st.write(key_message)
+
+    theme = response_dict['theme']
+    st.write('\n **Theme**')
+    st.write(theme)
 
     # st.write(response_dict)
 
