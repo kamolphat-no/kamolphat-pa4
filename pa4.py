@@ -10,7 +10,7 @@ client = openai.OpenAI(api_key=user_api_key)
 prompt = """ Act as a song analyst. You will receive a song name and full lyrics 
             and you will give the song key message, theme, interesting words that support this theme
             and other songs related with this theme. Give me a list of key message and theme in JSON string.
-            List 10 intersting words in JSON array, one word per line.
+            And List 10 intersting words in JSON array, one word per line.
             Each word should have 3 fields:
             - "word" - word that support song theme or key message if word is not in english, 
                        give that word in original language
@@ -46,6 +46,10 @@ if st.button('Send'):
     ai_response = response.choices[0].message.content
 
     response_dict = json.loads(ai_response)
-    st.write(ai_response)
+
+    key_message = response_dict['key_message']
+    st.write('**Key Message** \n')
+    st.write(key_message)
+    
     st.write(response_dict)
 
