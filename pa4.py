@@ -46,7 +46,7 @@ if st.button('Send'):
     ai_response = response.choices[0].message.content
 
     key_message = ai_response[0]['key_message']
-    st.subheader('Key Message \n')
+    st.write('**Key Message** \n')
     st.write(key_message)
 
     st.write(ai_response)
