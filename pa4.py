@@ -17,7 +17,7 @@ prompt = """ Act as a song analyst. You will receive a song name and full lyrics
             - "definition" - if the word is in english, give the definition in english 
                              but if the word is in other langauges, give the english translation
             - "description" - a description why that word support the theme
-            And give me a list of other recommended songs in dictionary.
+            And give me a list of other recommended songs in JSON string.
             The key message should be 1 to 2 sentences only. The theme should be only 3 words.
             Other related songs should be 3 to 5 songs only.
             Don't say anything at first. Wait for the user to say something.
