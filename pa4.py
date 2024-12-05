@@ -55,5 +55,12 @@ if st.button('Send'):
     st.write('\n **Theme**')
     st.write(theme)
 
-    # st.write(response_dict)
+    # vocab_df = pd.DataFrame.from_dict(response_dict)
+    # st.table(vocab_df)
+
+    other_song = response_dict['other_recommended_songs']
+    st.write('\n **Other recommended songs**')
+    st.write(other_song)
+
+    st.write(response_dict)
 
