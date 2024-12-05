@@ -49,19 +49,19 @@ if st.button('Send'):
 
     st.write(response_dict)
 
-    key_message = response_dict['key_message']
+    key_message = response_dict.get('key_message', 'No key message provided.')
     st.write('**Key Message**')
     st.write(key_message)
 
-    theme = response_dict['theme']
+    theme = response_dict.get('theme', 'No theme provided.')
     st.write('\n **Theme**')
     st.write(theme)
 
     # vocab_df = pd.DataFrame.from_dict(response_dict)
     # st.table(vocab_df)
 
-    other_song = response_dict['related_songs']
+    other_songs = response_dict.get('related_songs', [])
     st.write('\n **Other recommended songs**')
-    st.write(other_song)
+    st.write(other_songs)
 
 
