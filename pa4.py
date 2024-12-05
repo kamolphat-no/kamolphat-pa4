@@ -42,7 +42,7 @@ if st.button('Send'):
         messages=messages_so_far
     )
     # Show the response from the AI in a box
-    st.subheader('**AI response :**')
+    st.write('**AI response :**')
     ai_response = response.choices[0].message.content
 
     response_dict = json.loads(ai_response)
@@ -50,18 +50,18 @@ if st.button('Send'):
     st.write(response_dict)
 
     key_message = response_dict.get('key_message', 'No key message provided.')
-    st.write('**Key Message**')
-    st.write(key_message)
+    st.subheader('Key Message')
+    st.write(f'\t {key_message}')
 
     theme = response_dict.get('theme', 'No theme provided.')
-    st.write('\n **Theme**')
-    st.write(theme)
+    st.subheader('\n Theme')
+    st.write(f'\t {theme}')
 
     # vocab_df = pd.DataFrame.from_dict(response_dict)
     # st.table(vocab_df)
 
     other_songs = response_dict.get('related_songs', [])
-    st.write('\n **Other recommended songs**')
+    st.subheader('\n Other recommended songs')
     for index, song in enumerate(other_songs) :
         num = index + 1
         st.write(f'{num}. {song}')
