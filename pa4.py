@@ -12,7 +12,8 @@ prompt = """ Act as a song analyst. You will receive a song name and full lyrics
             and other songs related with this theme. Give me a list of key message, theme, other related song.
             And list 10 intersting words in JSON array, one word per line.
             Each word should have 3 fields:
-            - "word" - word that support song theme or key message
+            - "word" - word that support song theme or key message if word is not in english, 
+                       give that word in original language
             - "definition" - if the word is in english, give the definition in english 
                              but if the word is in other langauges, give the english translation
             - "description" - a description why that word support the theme
@@ -22,12 +23,12 @@ prompt = """ Act as a song analyst. You will receive a song name and full lyrics
         """
 
 # write the streamlit input page
-st.title('Song theme')
+st.title('Song message')
 st.markdown('Input name of the song with full lyrics. \n\
             The AI will give you key message and theme of the songs. \n\
             Interesting word list and other recommended songs will be also provided.')
 
-user_input = st.text_area("Enter song's name and lyrics : ", " Typing here... ")
+user_input = st.text_area("Enter song name and lyrics : ", " Typing here... ")
 
 # submit button after text input
 if st.button('Send'):
@@ -41,6 +42,7 @@ if st.button('Send'):
     )
     # Show the response from the AI in a box
     st.markdown('**AI response:**')
-    suggestion_dictionary = response.choices[0].message.content
-    st.write(suggestion_dictionary)
+    ai_response = response.choices[0].message.content
+
+    st.write(ai_response)
 
