@@ -1,6 +1,5 @@
 import streamlit as st
 import openai
-import orjson
 import json
 import pandas as pd
 
@@ -46,7 +45,7 @@ if st.button('Send'):
     st.subheader('**AI response :**')
     ai_response = response.choices[0].message.content
 
-    response_dict = orjson.loads(ai_response)
+    response_dict = json.loads(ai_response)
 
     st.write(response_dict)
 
