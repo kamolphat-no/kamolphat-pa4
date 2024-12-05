@@ -48,6 +48,8 @@ if st.button('Send'):
 
     response_dict = json.loads(ai_response)
 
+    st.write(response_dict)
+
     key_message = response_dict['key_message']
     st.write('**Key Message**')
     st.write(key_message)
@@ -63,5 +65,4 @@ if st.button('Send'):
     st.write('\n **Other recommended songs**')
     st.write(other_song)
 
-    # st.write(response_dict)
 
