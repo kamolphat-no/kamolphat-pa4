@@ -48,8 +48,8 @@ if st.button('Send'):
     response_dict = json.loads(ai_response)
 
     key_message = response_dict['key_message']
-    # st.write('**Key Message** \n')
-    # st.write(key_message)
+    st.write('**Key Message** \n')
+    st.write(key_message)
 
-    st.write(response_dict)
+    # st.write(response_dict)
 
