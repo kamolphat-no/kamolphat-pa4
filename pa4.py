@@ -56,7 +56,7 @@ if st.button('Send'):
     theme = response_dict.get('theme', 'No theme provided.')
     st.subheader('\n Theme')
     for t in theme :
-        st.write(f'{t[0]}, {t[1]} and {t[2]}')
+        st.write(f'{t}, ')
 
     vocab_df = pd.DataFrame.from_dict(response_dict.get('interesting_words', []))
     st.subheader('\n Interesting word list')
