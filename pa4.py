@@ -42,8 +42,10 @@ if st.button('Send'):
         messages=messages_so_far
     )
     # Show the response from the AI in a box
-    st.markdown('**AI response:**')
+    st.header('**AI response :**')
     ai_response = response.choices[0].message.content
 
-    st.write(ai_response)
+    key_message = ai_response['Key Message']
+    st.subheader('Key Message \n')
+    st.write(key_message)
 
