@@ -47,7 +47,5 @@ if st.button('Send'):
 
     response_dict = json.loads(ai_response)
 
-    key_message = response_dict['Key Message']
-    st.subheader('Key Message \n')
-    st.write(key_message)
+    st.write(response_dict)
 
