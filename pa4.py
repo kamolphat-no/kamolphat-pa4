@@ -12,11 +12,11 @@ prompt = """ Act as a song analyst. You will receive a song name and full lyrics
             and other songs related with this theme. Give me a list of key message and theme in JSON array.
             And List 10 intersting words in JSON array, one word per line.
             Each word should have 3 fields:
-            - "word" - word that support song theme or key message if word is not in english, 
+            - "Word" - word that support song theme or key message if word is not in english, 
                        give that word in original language
-            - "definition" - if the word is in english, give the definition in english 
+            - "Definition" - if the word is in english, give the definition in english 
                              but if the word is in other langauges, give the english translation
-            - "description" - a description why that word support the theme
+            - "Description" - a description why that word support the theme
             And give me a list of other recommended songs in JSON array.
             The key message should be 1 to 2 sentences only. The theme should be only 3 words.
             Other related songs should be 3 to 5 songs only.
@@ -55,9 +55,11 @@ if st.button('Send'):
 
     theme = response_dict.get('theme', 'No theme provided.')
     st.subheader('\n Theme')
-    st.write(theme)
+    for t in theme :
+        st.write(f'{t[0]}, {t[1]} and {t[2]}')
 
     vocab_df = pd.DataFrame.from_dict(response_dict.get('interesting_words', []))
+    st.subheader('\n Interesting word list')
     st.table(vocab_df)
 
     other_songs = response_dict.get('related_songs', [])
