@@ -19,11 +19,11 @@ prompt = """ Act as a song analyst. You will receive full lyrics of the song
                              but if the word is in other langauges, give the english translation.
             - "description" - a description why that word support the theme
             And give me a list of 5 other recommended songs in JSON array.
-            Give response in JSON array as this structure :
-            {'key_message' : ' ' }  , {'theme' : ' ' } , 
+            Give entire response in JSON array as this structure :
+            [ {'key_message' : ' ' }  , {'theme' : ' ' } , 
             {'interesting_words' : [{'word' : ' ' , 'definition' : ' ' , 'description' : ' '} , ..... ,
             {'word' : ' ' , 'definition' : ' ' , 'description' : ' '}] } ,
-            {'related_songs' : [' ' , ' ' , ' ' , ' ' , ' ' ]}
+            {'related_songs' : [' ' , ' ' , ' ' , ' ' , ' ' ]} ]
             Don't say anything at first. Wait for the user to say something.
         """
 
@@ -37,41 +37,44 @@ user_input = st.text_area("Enter full lyrics only : ", " Typing here... ")
 
 # submit button after text input
 if st.button('Send'):
-    messages_so_far = [
-        {"role": "system", "content": prompt},
-        {'role': 'user', 'content': user_input},
-    ]
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=messages_so_far
-    )
-    # Show the response from the AI in a box
-    st.write('**AI response :**')
-    ai_response = response.choices[0].message.content
+    if user_input :
+        messages_so_far = [
+            {"role": "system", "content": prompt},
+            {'role': 'user', 'content': user_input},
+        ]
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=messages_so_far
+        )
+        # Show the response from the AI in a box
+        st.write('**AI response :**')
+        ai_response = response.choices[0].message.content
 
-    st.write(ai_response)
+        st.write(ai_response)
 
-    response_dict = json.loads(ai_response)
+        response_dict = json.loads(ai_response)
 
-    st.write(response_dict)
+        st.write(response_dict)
 
-    for item in response_dict :
-        key_message = response_dict.get('key_message',[])
         st.subheader('Key Message')
+        key_message = response_dict.get('key_message','No key message found.')
         st.write(key_message)
 
-        theme = response_dict.get('theme', [])
         st.subheader('\n Theme')
+        theme = response_dict.get('theme', [])
         st.write(theme)
 
-        vocab_df = pd.DataFrame.from_dict(response_dict.get('interesting_words', []))
         st.subheader('\n Interesting word list')
+        vocab_df = pd.DataFrame.from_dict(response_dict.get('interesting_words', []))
         st.table(vocab_df)
 
-        other_songs = response_dict.get('related_songs', [])
         st.subheader('\n Other recommended songs')
+        other_songs = response_dict.get('related_songs', [])
         for index, song in enumerate(other_songs) :
             num = index + 1
             st.write(f'{num}. {song}')
+
+    else:
+        st.warning('Please enter the full lyrics of the song!')
 
 
