@@ -20,7 +20,7 @@ prompt = """ Act as a song analyst. You will receive full lyrics of the song
             - "description" - a description why that word support the theme
             And give me a list of 5 other recommended songs in JSON array.
             Give entire response in JSON array as this structure :
-            [ {'key_message' : ' ' }  , {'theme' : ' ' } , 
+            [ {'key_message' : ' ' } , {'theme' : ' ' } , 
             {'interesting_words' : [{'word' : ' ' , 'definition' : ' ' , 'description' : ' '} , ..... ,
             {'word' : ' ' , 'definition' : ' ' , 'description' : ' '}] } ,
             {'related_songs' : [' ' , ' ' , ' ' , ' ' , ' ' ]} ]
@@ -57,7 +57,7 @@ if st.button('Send'):
         st.write(response_dict)
 
         st.subheader('Key Message')
-        key_message = response_dict.get('key_message','No key message found.')
+        key_message = response_dict[0].get('key_message','No key message found.')
         st.write(key_message)
 
         st.subheader('\n Theme')
