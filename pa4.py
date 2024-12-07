@@ -20,10 +20,10 @@ prompt = """ Act as a song analyst. You will receive full lyrics of the song
             - "description" - a description why that word support the theme
             And give me a list of 5 other recommended songs in JSON array.
             Give response in JSON array as this structure :
-            [ {'key_message' : ' ' }  , {'theme' : ' ' } , 
+            {'key_message' : ' ' }  , {'theme' : ' ' } , 
             {'interesting_words' : [{'word' : ' ' , 'definition' : ' ' , 'description' : ' '} , ..... ,
             {'word' : ' ' , 'definition' : ' ' , 'description' : ' '}] } ,
-            {'related_songs' : [' ' , ' ' , ' ' , ' ' , ' ' ]} ]
+            {'related_songs' : [' ' , ' ' , ' ' , ' ' , ' ' ]}
             Don't say anything at first. Wait for the user to say something.
         """
 
@@ -55,7 +55,7 @@ if st.button('Send'):
 
     st.write(response_dict)
 
-    key_message = response_dict['key_message']
+    key_message = response_dict.get('key_message',[])
     st.subheader('Key Message')
     st.write(key_message)
 
