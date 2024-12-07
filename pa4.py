@@ -55,7 +55,7 @@ if st.button('Send'):
 
     st.write(response_dict)
 
-    key_message = response_dict.get('key_message', [])
+    key_message = response_dict['key_message']
     st.subheader('Key Message')
     st.write(key_message)
 
