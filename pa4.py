@@ -25,11 +25,11 @@ prompt = """ Act as a song analyst. You will receive a song name and full lyrics
 
 # write the streamlit input page
 st.title('Song message')
-st.markdown('Input name of the song with full lyrics. \n\
+st.markdown('Input full lyrics of the song you want. \n\
             The AI will give you key message and theme of the songs. \n\
             Interesting word list and other recommended songs will be also provided.')
 
-user_input = st.text_area("Enter song name and lyrics : ", " Typing here... ")
+user_input = st.text_area("Enter full lyrics only : ", " Typing here... ")
 
 # submit button after text input
 if st.button('Send'):
@@ -49,11 +49,11 @@ if st.button('Send'):
 
     st.write(response_dict)
 
-    key_message = response_dict.get('key_message', 'No key message provided.')
+    key_message = response_dict.get('key_message', [])
     st.subheader('Key Message')
     st.write(key_message)
 
-    theme = response_dict.get('theme', 'No theme provided.')
+    theme = response_dict.get('theme', [])
     st.subheader('\n Theme')
     st.write(theme)
 
