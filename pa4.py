@@ -66,8 +66,8 @@ if st.button('Send'):
 
         st.subheader('\n Interesting word list')
         vocab = response_dict[2].get('interesting_words', [])
-        vocab_df = pd.Series(vocab, index=[1,2,3,4,5,6,7,8,9,10])
-        vocab_df = pd.DataFrame.from_dict(vocab_df)
+        vocab_df = pd.DataFrame.from_dict(vocab)
+        vocab_df = pd.Series(vocab_df, index=[1,2,3,4,5,6,7,8,9,10])
         st.table(vocab_df)
 
         st.subheader('\n Other recommended songs')
