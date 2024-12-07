@@ -29,8 +29,8 @@ prompt = """ Act as a song analyst. You will receive full lyrics of the song
 
 # write the streamlit input page
 st.title('Song message')
-st.markdown('Input full lyrics of the song you want. \n\
-            The AI will give you key message and theme of the songs. \n\
+st.markdown('Input **full lyrics** of the song you want. \n\
+            The AI will give you key message and theme of the song. \n\
             Interesting word list and other recommended songs will be also provided.')
 
 user_input = st.text_area("Enter full lyrics only : ", " Typing here... ")
@@ -67,6 +67,7 @@ if st.button('Send'):
         st.subheader('\n Interesting word list')
         vocab = response_dict[2].get('interesting_words', [])
         vocab_df = pd.DataFrame.from_dict(vocab)
+        vocab_df = pd.Series(vocab_df, index=[1,2,3,4,5,6,7,8,9,10])
         st.table(vocab_df)
 
         st.subheader('\n Other recommended songs')
