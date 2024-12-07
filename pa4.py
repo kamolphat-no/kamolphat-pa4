@@ -31,7 +31,7 @@ prompt = """ Act as a song analyst. You will receive full lyrics of the song
 st.title('Song message')
 st.markdown('Input **full lyrics** of the song you want. \n\
             The AI will give you key message and theme of the song. \n\
-            Interesting word list and other recommended songs will be also provided.')
+            Interesting word list and other recommended songs will also be provided.')
 
 user_input = st.text_area("Enter full lyrics only : ", " Typing here... ")
 
@@ -50,11 +50,11 @@ if st.button('Send'):
         st.write('**AI response :**')
         ai_response = response.choices[0].message.content
 
-        st.write(ai_response)
+        # st.write(ai_response)
 
         response_dict = json.loads(ai_response)
 
-        st.write(response_dict)
+        # st.write(response_dict)
 
         st.subheader('Key Message')
         key_message = response_dict[0].get('key_message',[])
@@ -67,7 +67,6 @@ if st.button('Send'):
         st.subheader('\n Interesting word list')
         vocab = response_dict[2].get('interesting_words', [])
         vocab_df = pd.DataFrame.from_dict(vocab)
-        vocab_df = pd.Series(vocab_df, index=[1,2,3,4,5,6,7,8,9,10])
         st.table(vocab_df)
 
         st.subheader('\n Other recommended songs')
