@@ -18,12 +18,12 @@ prompt = """ Act as a song analyst. You will receive full lyrics of the song
             - "definition" - definition if that word. If the word is in english, give the definition in english.
                              but if the word is in other langauges, give the english translation.
             - "description" - a description why that word support the theme
-            And give me a list of 5 other recommended songs in JSON array.
+            And give me a list of 5 other recommended songs with artist in JSON array.
             Give entire response in JSON array as this structure :
             [ {'key_message' : ' ' } , {'theme' : ' ' } , 
             {'interesting_words' : [{'word' : ' ' , 'definition' : ' ' , 'description' : ' '} , ..... ,
             {'word' : ' ' , 'definition' : ' ' , 'description' : ' '}] } ,
-            {'related_songs' : [' ' , ' ' , ' ' , ' ' , ' ' ]} ]
+            {'related_songs' : ['song name - artist' , ' ' , ' ' , ' ' , ' ' ]} ]
             Don't say anything at first. Wait for the user to say something.
         """
 
