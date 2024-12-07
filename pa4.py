@@ -45,6 +45,8 @@ if st.button('Send'):
     st.write('**AI response :**')
     ai_response = response.choices[0].message.content
 
+    st.write(ai_response)
+
     response_dict = json.loads(ai_response)
 
     st.write(response_dict)
