@@ -18,6 +18,7 @@ prompt = """ Act as a song analyst. You will receive a song name and full lyrics
                              but if the word is in other langauges, give the english translation
             - "Description" - a description why that word support the theme
             And give me a list of other recommended songs in JSON array.
+            All of the response should be in JSON array.
             The key message should be 1 to 2 sentences only. The theme should be only 3 words.
             Other related songs should be 3 to 5 songs only.
             Don't say anything at first. Wait for the user to say something.
@@ -46,6 +47,8 @@ if st.button('Send'):
     ai_response = response.choices[0].message.content
 
     st.write(ai_response)
+    st.write(type(ai_response))
+
 
     response_dict = json.loads(ai_response)
 
