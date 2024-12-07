@@ -57,19 +57,20 @@ if st.button('Send'):
         st.write(response_dict)
 
         st.subheader('Key Message')
-        key_message = response_dict[0].get('key_message','No key message found.')
+        key_message = response_dict[0].get('key_message',[])
         st.write(key_message)
 
         st.subheader('\n Theme')
-        theme = response_dict.get('theme', [])
+        theme = response_dict[1].get('theme', [])
         st.write(theme)
 
         st.subheader('\n Interesting word list')
-        vocab_df = pd.DataFrame.from_dict(response_dict.get('interesting_words', []))
+        vocab = response_dict[2].get('interesting_words', [])
+        vocab_df = pd.DataFrame.from_dict(vocab)
         st.table(vocab_df)
 
         st.subheader('\n Other recommended songs')
-        other_songs = response_dict.get('related_songs', [])
+        other_songs = response_dict[3].get('related_songs', [])
         for index, song in enumerate(other_songs) :
             num = index + 1
             st.write(f'{num}. {song}')
