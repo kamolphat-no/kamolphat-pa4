@@ -20,7 +20,7 @@ prompt = """ Act as a song analyst. You will receive full lyrics of the song
             - "description" - a description why that word support the theme
             And give me a list of 5 other recommended songs with artist in JSON array.
             Give entire response in JSON array as this structure :
-            [ {'key_message' : ' ' } , {'theme' : ' ' } , 
+            [ {'key_message' : ' ' } , {'theme' : ' word, word and word '} , 
             {'interesting_words' : [{'word' : ' ' , 'definition' : ' ' , 'description' : ' '} , ..... ,
             {'word' : ' ' , 'definition' : ' ' , 'description' : ' '}] } ,
             {'related_songs' : ['song name - artist' , ' ' , ' ' , ' ' , ' ' ]} ]
@@ -54,7 +54,7 @@ if st.button('Send'):
 
         response_dict = json.loads(ai_response)
 
-        # st.write(response_dict)
+        st.write(response_dict)
 
         st.subheader('Key Message')
         key_message = response_dict[0].get('key_message',[])
@@ -68,7 +68,7 @@ if st.button('Send'):
         vocab = response_dict[2].get('interesting_words', [])
         vocab_df = pd.DataFrame.from_dict(vocab)
         vocab_df.index = ['1','2','3','4','5','6','7','8','9','10']
-        st.table(vocab_df)
+        st.dataframe(vocab_df)
 
         st.subheader('\n Other recommended songs')
         other_songs = response_dict[3].get('related_songs', [])
