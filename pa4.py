@@ -54,7 +54,7 @@ if st.button('Send'):
 
         response_dict = json.loads(ai_response)
 
-        # st.write(response_dict)
+        st.write(response_dict)
 
         st.subheader('Key Message')
         key_message = response_dict[0].get('key_message',[])
@@ -62,7 +62,8 @@ if st.button('Send'):
 
         st.subheader('\n Theme')
         theme = response_dict[1].get('theme', [])
-        st.write(theme)
+        for t in theme :
+            st.write(f'{t}, ')
 
         st.subheader('\n Interesting word list')
         vocab = response_dict[2].get('interesting_words', [])
